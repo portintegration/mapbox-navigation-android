@@ -215,7 +215,7 @@ public class NavigationViewModel extends AndroidViewModel {
 
       NavigationOptions updatedOptions = updatedOptionsBuilder.build();
       initializeNavigation(updatedOptions);
-      initializeVoiceInstructionLoader();
+      initializeVoiceInstructionLoader(navigationViewOptions.voiceInstructionLoaderBaseUrl());
       initializeVoiceInstructionCache();
       initializeNavigationSpeechPlayer(options);
     }
@@ -390,10 +390,10 @@ public class NavigationViewModel extends AndroidViewModel {
     this.speechPlayer = new NavigationSpeechPlayer(speechPlayerProvider);
   }
 
-  private void initializeVoiceInstructionLoader() {
+  private void initializeVoiceInstructionLoader(@Nullable String baseUrl) {
     Cache cache = new Cache(new File(getApplication().getCacheDir(), OKHTTP_INSTRUCTION_CACHE),
         TEN_MEGABYTE_CACHE_SIZE);
-    voiceInstructionLoader = new VoiceInstructionLoader(getApplication(), accessToken, cache);
+    voiceInstructionLoader = new VoiceInstructionLoader(getApplication(), accessToken, cache, baseUrl);
   }
 
   private void initializeVoiceInstructionCache() {
