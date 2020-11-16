@@ -38,6 +38,9 @@
   <color name="mapbox_navigation_view_color_banner_maneuver_primary">#FFFFFF</color>
   <color name="mapbox_navigation_view_color_banner_maneuver_secondary">#4DFFFFFF</color>
 
+  <color name="mapbox_navigation_view_color_speed_limit_text">#333333</color>
+  <color name="mapbox_navigation_view_color_speed_limit_background">#FFFFFF</color>
+
   <!-- Default Dark Theme -->
   <color name="mapbox_navigation_view_color_primary_dark">#2D3F53</color>
   <color name="mapbox_navigation_view_color_secondary_dark">#D8D8D8</color>
@@ -53,6 +56,9 @@
   <color name="mapbox_navigation_view_color_banner_secondary_text_dark">#E6FFFFFF</color>
   <color name="mapbox_navigation_view_color_banner_maneuver_primary_dark">#FFFFFF</color>
   <color name="mapbox_navigation_view_color_banner_maneuver_secondary_dark">#4DFFFFFF</color>
+
+  <color name="mapbox_navigation_view_color_speed_limit_text_dark">#333333</color>
+  <color name="mapbox_navigation_view_color_speed_limit_background_dark">#EFEFEF</color>
 
   <!-- Alert View -->
   <color name="mapbox_navigation_view_color_progress">#4B75A4</color>
@@ -77,6 +83,10 @@
   <color name="mapbox_instruction_view_secondary_text">@color/mapbox_navigation_view_color_banner_secondary_text</color>
   <color name="mapbox_instruction_maneuver_view_primary">@color/mapbox_navigation_view_color_banner_maneuver_primary</color>
   <color name="mapbox_instruction_maneuver_view_secondary">@color/mapbox_navigation_view_color_banner_maneuver_secondary</color>
+
+  <!-- Default SpeedLimitView -->
+  <color name="mapbox_speed_limit_text_color">@color/mapbox_navigation_view_color_speed_limit_text</color>
+  <color name="mapbox_speed_limit_view_background">@color/mapbox_navigation_view_color_speed_limit_background</color>
 
   <!-- Default SoundButton -->
   <color name="mapbox_sound_button_primary">@color/mapbox_navigation_view_color_primary</color>
