@@ -53,6 +53,7 @@ import kotlinx.android.synthetic.main.activity_silent_waypoints_reroute_layout.m
 import kotlinx.android.synthetic.main.activity_silent_waypoints_reroute_layout.seekBar
 import kotlinx.android.synthetic.main.activity_silent_waypoints_reroute_layout.seekBarLayout
 import kotlinx.android.synthetic.main.activity_silent_waypoints_reroute_layout.seekBarText
+import kotlinx.android.synthetic.main.activity_silent_waypoints_reroute_layout.tvDebugInfo
 import kotlinx.android.synthetic.main.content_simple_mapbox_navigation.*
 import timber.log.Timber
 import java.lang.ref.WeakReference
@@ -102,7 +103,16 @@ class SilentWaypointsRerouteActivity :
             navigationMapboxMap.drawRoutes(routes)
         }
     }
-
+    private val routeProgressObserver = object : RouteProgressObserver {
+        override fun onRouteProgressChanged(routeProgress: RouteProgress) {
+            val routeOptions = routeProgress.route.routeOptions()
+            val waypoints = routeOptions?.coordinates()?.size ?: 0
+            val silentWaypoints = waypoints - (routeOptions?.waypointIndicesList()?.size ?: 0)
+            val remainingWaypoints = routeProgress.remainingWaypoints
+            tvDebugInfo.text = "Waypoints: $waypoints\nSilent waypoints: $silentWaypoints\n" +
+                "RemainingWaypoints: $remainingWaypoints"
+        }
+    }
     private val routesReqCallback = object : RoutesRequestCallback {
         override fun onRoutesReady(routes: List<DirectionsRoute>) {
             Timber.d("route request success $routes")
@@ -144,6 +154,7 @@ class SilentWaypointsRerouteActivity :
         mapboxNavigation.run {
             registerTripSessionStateObserver(tripSessionStateObserver)
             registerRoutesObserver(routeObserver)
+            registerRouteProgressObserver(routeProgressObserver)
             registerOffRouteObserver(this@SilentWaypointsRerouteActivity)
             getRerouteController()?.registerRerouteStateObserver(
                 this@SilentWaypointsRerouteActivity
@@ -166,6 +177,7 @@ class SilentWaypointsRerouteActivity :
         stopLocationUpdates()
         mapboxNavigation.run {
             unregisterTripSessionStateObserver(tripSessionStateObserver)
+            unregisterRouteProgressObserver(routeProgressObserver)
             unregisterRoutesObserver(routeObserver)
             unregisterOffRouteObserver(this@SilentWaypointsRerouteActivity)
             getRerouteController()?.unregisterRerouteStateObserver(
