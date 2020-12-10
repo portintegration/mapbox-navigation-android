@@ -7,7 +7,8 @@ import com.mapbox.navigation.core.trip.session.BannerInstructionsObserver
 import com.mapbox.navigation.testing.ui.idling.NavigationIdlingResource
 
 /**
- * Becomes idle when [BannerInstructionsObserver.onNewBannerInstructions] gets invoked.
+ * Becomes idle when [BannerInstructionsObserver.onNewBannerInstructions] gets invoked
+ * and `bannerInstructions == expectedBannerInstructions`.
  *
  * This is detected automatically when `mapboxNavigation` is provided.
  * Otherwise, it should be invoked manually with

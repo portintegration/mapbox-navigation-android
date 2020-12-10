@@ -9,7 +9,7 @@ import com.mapbox.navigation.instrumentation_tests.R
 import com.mapbox.navigation.instrumentation_tests.utils.idling.BannerInstructionsIdlingResource
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions
 import kotlinx.android.synthetic.main.activity_basic_navigation_view.*
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class BannerInstructionsTest : SimpleNavigationViewTest() {
@@ -28,7 +28,7 @@ class BannerInstructionsTest : SimpleNavigationViewTest() {
                             .distanceRemaining
                             .toDouble()
                     ).toString()
-                    Assert.assertEquals(text, (distanceView.text as SpannedString).toString())
+                    assertEquals(text, (distanceView.text as SpannedString).toString())
                 }
             }
             mapboxNavigation.registerRouteProgressObserver(routeProgressObserver)

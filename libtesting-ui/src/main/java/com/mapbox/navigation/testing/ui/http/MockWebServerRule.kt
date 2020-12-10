@@ -57,12 +57,3 @@ class MockWebServerRule : TestWatcher() {
         webServer.shutdown()
     }
 }
-
-/*val handshaCertificate = HandshakeCertificates.Builder()
-            .addPlatformTrustedCertificates()
-            .addTrustedCertificate()
-        val localhostCertificate = HeldCertificate.Builder()
-            .addSubjectAlternativeName(InetAddress.getByName("localhost").canonicalHostName)
-            .build()*/
-// webServer.useHttps(SSLContext.getDefault().socketFactory, false)
-// webServer.useHttps(TlsUtil.localhost().sslSocketFactory(), false)

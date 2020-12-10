@@ -6,7 +6,6 @@ import com.mapbox.navigation.base.internal.extensions.applyDefaultParams
 import com.mapbox.navigation.base.trip.model.RouteProgressState
 import com.mapbox.navigation.core.MapboxNavigation
 import com.mapbox.navigation.core.MapboxNavigationProvider
-import com.mapbox.navigation.instrumentation_tests.R
 import com.mapbox.navigation.instrumentation_tests.activity.EmptyTestActivity
 import com.mapbox.navigation.instrumentation_tests.routesRequestCallback
 import com.mapbox.navigation.instrumentation_tests.utils.MapboxNavigationRule
@@ -14,7 +13,6 @@ import com.mapbox.navigation.instrumentation_tests.utils.Utils
 import com.mapbox.navigation.instrumentation_tests.utils.assertions.RouteProgressStateTransitionAssertion
 import com.mapbox.navigation.instrumentation_tests.utils.idling.RouteProgressStateIdlingResource
 import com.mapbox.navigation.instrumentation_tests.utils.location.MockLocationReplayerRule
-import com.mapbox.navigation.instrumentation_tests.utils.loopFor
 import com.mapbox.navigation.instrumentation_tests.utils.routes.MockRoutesProvider
 import com.mapbox.navigation.instrumentation_tests.utils.runOnMainSync
 import com.mapbox.navigation.testing.ui.BaseTest
@@ -69,8 +67,6 @@ class SanityCoreRouteTest : BaseTest<EmptyTestActivity>(EmptyTestActivity::class
                 longitude = mockRoute.routeWaypoints.first().longitude()
             }
         }
-        // workaround for https://github.com/mapbox/mapbox-navigation-android/issues/3786
-        R.id.navigationView.loopFor(2000)
         runOnMainSync {
             mapboxNavigation.startTripSession()
             mapboxNavigation.requestRoutes(

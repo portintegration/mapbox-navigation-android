@@ -13,7 +13,7 @@ import com.mapbox.navigation.testing.ui.http.MockWebServerRule
  * @param routeResponse deserialized response
  * @param mockRequestHandlers all handlers that needed to be fed to [MockWebServerRule]
  * @param routeWaypoints all waypoints, including the starting point
- * @param routeWaypoints all banner instrucitons on the route
+ * @param bannerInstructions all banner instructions on the route
  */
 data class MockRoute(
     val routeResponseJson: String,

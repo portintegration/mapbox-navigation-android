@@ -30,18 +30,18 @@ object MockRoutesProvider {
                 ),
                 MockVoiceRequestHandler(
                     bufferFromRawFile(context, R.raw.route_response_dc_very_short_voice_1),
-                    """%3Cspeak%3E%3Camazon:effect%20name=%22drc%22%3E%3Cprosody%20rate=%221.08%22%3EDrive%20north%20on%2014th%20Street%20Northwest.%20Then%20Turn%20right%20onto%20Pennsylvania%20Avenue%20Northwest.%3C%2Fprosody%3E%3C%2"""
+                    readRawFileText(context, R.raw.route_response_dc_very_announcement_1)
                 ),
                 MockVoiceRequestHandler(
                     bufferFromRawFile(context, R.raw.route_response_dc_very_short_voice_2),
-                    """%3Cspeak%3E%3Camazon:effect%20name=%22drc%22%3E%3Cprosody%20rate=%221.08%22%3EYou%20have%20arrived%20at%20your%20destination.%3C%2Fprosody%3E%3C%2F"""
+                    readRawFileText(context, R.raw.route_response_dc_very_announcement_2)
                 )
             ),
             coordinates,
             listOf(
-                BannerInstructions.fromJson("""{"distanceAlongGeometry":80.35600280761719,"primary":{"text":"Pennsylvania Avenue Northwest","components":[{"text":"Pennsylvania Avenue Northwest","type":"text","active":false}],"type":"turn","modifier":"right"}}"""),
-                BannerInstructions.fromJson("""{"distanceAlongGeometry":93.83116912841797,"primary":{"text":"You will arrive at your destination","components":[{"text":"You will arrive at your destination","type":"text","active":false}],"type":"arrive","modifier":"straight"}}"""),
-                BannerInstructions.fromJson("""{"distanceAlongGeometry":79.16699981689453,"primary":{"text":"You have arrived at your destination","components":[{"text":"You have arrived at your destination","type":"text","active":false}],"type":"arrive","modifier":"straight"}}""")
+                BannerInstructions.fromJson(readRawFileText(context, R.raw.route_response_dc_very_short_banner_instructions_1)),
+                BannerInstructions.fromJson(readRawFileText(context, R.raw.route_response_dc_very_short_banner_instructions_2)),
+                BannerInstructions.fromJson(readRawFileText(context, R.raw.route_response_dc_very_short_banner_instructions_3))
             )
         )
     }

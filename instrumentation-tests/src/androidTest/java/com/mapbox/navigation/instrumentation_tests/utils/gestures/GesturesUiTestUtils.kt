@@ -17,7 +17,7 @@ import org.hamcrest.Matcher
  */
 object GesturesUiTestUtils {
 
-    const val DEFAULT_GESTURE_DURATION = 500L
+    private const val DEFAULT_GESTURE_DURATION = 500L
 
     /**
      * Typically, used for zooming in or out, depending on parameters.

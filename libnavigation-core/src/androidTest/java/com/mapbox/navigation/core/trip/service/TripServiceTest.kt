@@ -25,6 +25,7 @@ internal class TripServiceTest :
 
     @Test
     fun checkNotificationContent() {
+        uiDevice.clearAllNotifications()
         R.id.btnStart.let {
             clickOn(it)
         }

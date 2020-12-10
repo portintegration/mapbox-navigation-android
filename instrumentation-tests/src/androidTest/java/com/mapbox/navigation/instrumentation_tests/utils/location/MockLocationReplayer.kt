@@ -32,7 +32,7 @@ class MockLocationReplayerRule(mockLocationUpdatesRule: MockLocationUpdatesRule)
         }
     }
     private val mapper = ReplayRouteMapper()
-    var mapboxReplayer: MapboxReplayer? = null
+    private var mapboxReplayer: MapboxReplayer? = null
 
     override fun starting(description: Description?) {
         mapboxReplayer = MapboxReplayer().also {

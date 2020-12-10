@@ -8,7 +8,8 @@ import com.mapbox.navigation.core.trip.session.RouteProgressObserver
 import com.mapbox.navigation.testing.ui.idling.NavigationIdlingResource
 
 /**
- * Becomes idle when [RouteProgressObserver.onRouteProgressChanged] gets invoked.
+ * Becomes idle when [RouteProgressObserver.onRouteProgressChanged] gets invoked
+ * and `currentRouteProgressState == awaitedProgressState`.
  *
  * This is detected automatically when `mapboxNavigation` is provided.
  * Otherwise, it should be invoked manually with
