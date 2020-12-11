@@ -2,6 +2,7 @@ package com.mapbox.navigation.instrumentation_tests.ui.navigation_view
 
 import androidx.test.espresso.Espresso
 import com.mapbox.navigation.core.MapboxNavigation
+import com.mapbox.navigation.instrumentation_tests.R
 import com.mapbox.navigation.instrumentation_tests.activity.BasicNavigationViewActivity
 import com.mapbox.navigation.instrumentation_tests.utils.MapboxNavigationRule
 import com.mapbox.navigation.instrumentation_tests.utils.idling.NavigationViewInitIdlingResource
@@ -33,7 +34,10 @@ abstract class SimpleNavigationViewTest :
 
     @Before
     fun setup() {
-        initIdlingResource = NavigationViewInitIdlingResource(activity.navigationView)
+        initIdlingResource = NavigationViewInitIdlingResource(
+            activity.navigationView,
+            activity.findViewById(R.id.navigationMapView)
+        )
         initIdlingResource.register()
         Espresso.onIdle()
 

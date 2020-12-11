@@ -1,8 +1,8 @@
 package com.mapbox.navigation.instrumentation_tests.ui
 
 import androidx.test.espresso.Espresso
+import com.mapbox.navigation.instrumentation_tests.R
 import com.mapbox.navigation.instrumentation_tests.activity.BasicNavigationViewActivity
-import com.mapbox.navigation.instrumentation_tests.arrivalObserver
 import com.mapbox.navigation.instrumentation_tests.utils.MapboxNavigationRule
 import com.mapbox.navigation.instrumentation_tests.utils.idling.ArrivalIdlingResource
 import com.mapbox.navigation.instrumentation_tests.utils.idling.NavigationViewInitIdlingResource
@@ -12,6 +12,7 @@ import com.mapbox.navigation.instrumentation_tests.utils.runOnMainSync
 import com.mapbox.navigation.testing.ui.BaseTest
 import com.mapbox.navigation.ui.NavigationViewOptions
 import kotlinx.android.synthetic.main.activity_basic_navigation_view.*
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -25,9 +26,15 @@ class SanityUiRouteTest :
     @get:Rule
     val mockLocationReplayerRule = MockLocationReplayerRule(mockLocationUpdatesRule)
 
+    private lateinit var initIdlingResource: NavigationViewInitIdlingResource
+
     @Before
     fun setup() {
-        NavigationViewInitIdlingResource(activity.navigationView).register()
+        initIdlingResource = NavigationViewInitIdlingResource(
+            activity.navigationView,
+            activity.findViewById(R.id.navigationMapView)
+        )
+        initIdlingResource.register()
         Espresso.onIdle()
     }
 
@@ -57,5 +64,10 @@ class SanityUiRouteTest :
 
         Espresso.onIdle()
         arrivalIdlingResource.unregister()
+    }
+
+    @After
+    fun tearDown() {
+        initIdlingResource.unregister()
     }
 }

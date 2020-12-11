@@ -1,6 +1,7 @@
 package com.mapbox.navigation.instrumentation_tests.utils.idling
 
 import androidx.test.espresso.IdlingResource
+import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.navigation.testing.ui.idling.NavigationIdlingResource
 import com.mapbox.navigation.ui.NavigationView
 
@@ -8,7 +9,8 @@ import com.mapbox.navigation.ui.NavigationView
  * Becomes idle when [NavigationView] is initialized.
  */
 class NavigationViewInitIdlingResource(
-    private val navigationView: NavigationView
+    private val navigationView: NavigationView,
+    private val navigationMapView: MapView
 ) : NavigationIdlingResource() {
 
     private var initialized = false
@@ -19,8 +21,12 @@ class NavigationViewInitIdlingResource(
 
     override fun registerIdleTransitionCallback(callback: IdlingResource.ResourceCallback?) {
         navigationView.initialize {
-            initialized = true
-            callback?.onTransitionToIdle()
+            navigationMapView.getMapAsync {
+                it.getStyle {
+                    initialized = true
+                    callback?.onTransitionToIdle()
+                }
+            }
         }
     }
 }
